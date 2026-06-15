@@ -6,408 +6,392 @@
 <title>Materi Flowchart — Panduan Quiz</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0f0e17;
-    --paper: #fffbf5;
-    --accent: #e85d26;
-    --accent2: #2563eb;
-    --soft: #f5efe6;
-    --border: #e2d9cc;
-    --green: #16a34a;
-    --muted: #7c6f62;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
-
-  header {
-    background: var(--ink); color: var(--paper);
-    padding: 48px 40px 40px; position: relative; overflow: hidden;
-  }
-  header::before {
-    content: ''; position: absolute; width: 400px; height: 400px;
-    background: var(--accent); border-radius: 50%; right: -80px; top: -160px; opacity: 0.18;
-  }
-  header::after {
-    content: 'FLOWCHART'; position: absolute; right: 32px; bottom: 8px;
-    font-family: 'Syne', sans-serif; font-size: 72px; font-weight: 800;
-    color: white; opacity: 0.04; letter-spacing: -2px; pointer-events: none;
-  }
-  .badge {
-    display: inline-block; background: var(--accent); color: white;
-    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
-    letter-spacing: 2px; padding: 4px 12px; border-radius: 2px;
-    text-transform: uppercase; margin-bottom: 16px;
-  }
-  header h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px,5vw,48px); font-weight: 800; line-height: 1.1; max-width: 560px; }
-  header p { margin-top: 12px; color: #a8a09a; font-weight: 300; max-width: 480px; }
-
-  .nav-pills {
-    display: flex; gap: 8px; padding: 20px 40px;
-    border-bottom: 1px solid var(--border); flex-wrap: wrap;
-    background: var(--paper); position: sticky; top: 0; z-index: 100;
-  }
-  .pill {
-    font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
-    letter-spacing: 0.5px; padding: 7px 18px; border-radius: 100px;
-    border: 1.5px solid var(--border); cursor: pointer; transition: all 0.2s;
-    background: transparent; color: var(--muted);
-  }
-  .pill:hover, .pill.active { background: var(--ink); color: white; border-color: var(--ink); }
-
-  main { max-width: 900px; margin: 0 auto; padding: 48px 40px; }
-  .section { display: none; }
-  .section.active { display: block; }
-
-  .section-label {
-    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
-  }
-  .section-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
-
-  .def-block {
-    border-left: 4px solid var(--accent); padding: 20px 24px;
-    background: var(--soft); border-radius: 0 10px 10px 0; margin-bottom: 32px;
-  }
-  .def-block strong { font-family: 'Syne', sans-serif; font-weight: 700; display: block; margin-bottom: 6px; font-size: 16px; }
-
-  .intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; margin-bottom: 40px; }
-  .intro-card { background: var(--soft); border: 1.5px solid var(--border); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
-  .intro-card .num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: var(--ink); opacity: 0.06; position: absolute; right: 16px; top: 8px; line-height: 1; }
-  .intro-card h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .intro-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-  .intro-card .icon { font-size: 22px; margin-bottom: 12px; }
-
-  .tips-box { background: var(--ink); color: white; border-radius: 14px; padding: 32px; margin-bottom: 32px; }
-  .tips-box h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--accent); }
-  .tip-row { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
-  .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-  .tip-text { font-size: 14px; line-height: 1.6; color: #d4cfc9; }
-  .tip-text strong { color: white; }
-
-  .yt-wrap {
-    background: #cc0000; border-radius: 14px; padding: 28px 32px;
-    margin-bottom: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-  }
-  .yt-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-  .yt-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: white; }
-  .yt-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: white; color: #cc0000; font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 14px; padding: 11px 24px;
-    border-radius: 100px; text-decoration: none; margin-top: 4px;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  }
-  .yt-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-
-  .game-wrap {
-    background: linear-gradient(135deg, #1e3a5f, #2563eb);
-    border-radius: 14px; padding: 28px 32px; margin-bottom: 40px;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-  }
-  .game-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
-  .game-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: white; }
-  .game-desc { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
-  .game-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: white; color: #1e3a5f; font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 14px; padding: 11px 24px;
-    border-radius: 100px; text-decoration: none; margin-top: 4px;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  }
-  .game-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-
-  .symbol-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; font-size: 14px; }
-  .symbol-table th { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 10px 16px; border-bottom: 2px solid var(--ink); }
-  .symbol-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .symbol-table tr:hover td { background: var(--soft); }
-  .shape-cell { font-size: 22px; text-align: center; width: 48px; }
-  .shape-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; display: block; }
-  .tag { display: inline-block; background: var(--ink); color: white; font-size: 10px; font-family: 'Syne', sans-serif; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.5px; margin-top: 4px; }
-  .tag.green { background: var(--green); }
-  .tag.blue { background: var(--accent2); }
-
-  .accordion { margin-bottom: 40px; }
-  .acc-item { border: 1.5px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; transition: border-color 0.2s; }
-  .acc-item.open { border-color: var(--ink); }
-  .acc-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; user-select: none; }
-  .acc-num { width: 28px; height: 28px; background: var(--ink); color: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; flex-shrink: 0; }
-  .acc-item.open .acc-num { background: var(--accent); }
-  .acc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; flex: 1; }
-  .acc-arrow { font-size: 18px; color: var(--muted); transition: transform 0.25s; }
-  .acc-item.open .acc-arrow { transform: rotate(180deg); }
-  .acc-body { display: none; padding: 0 20px 20px 62px; font-size: 14px; color: #3a3530; line-height: 1.75; }
-  .acc-item.open .acc-body { display: block; }
-  .acc-body ul { padding-left: 18px; margin-top: 8px; }
-  .acc-body li { margin-bottom: 5px; }
-  .acc-body .highlight { background: #fef3c7; border-radius: 4px; padding: 2px 6px; font-weight: 500; }
-
-  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
-
-  @media (max-width: 600px) {
-    header, .nav-pills, main { padding-left: 20px; padding-right: 20px; }
-    .pill { font-size: 11px; padding: 6px 12px; }
-  }
+:root {
+  --ink: #0f0e17;
+  --paper: #fffbf5;
+  --accent: #e85d26;
+  --accent2: #2563eb;
+  --soft: #f5efe6;
+  --border: #e2d9cc;
+  --green: #16a34a;
+  --muted: #7c6f62;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+header {
+  background: var(--ink); color: var(--paper);
+  padding: 48px 40px 40px; position: relative; overflow: hidden;
+}
+header::before {
+  content: ''; position: absolute; width: 400px; height: 400px;
+  background: var(--accent); border-radius: 50%; right: -80px; top: -160px; opacity: 0.18;
+}
+header::after {
+  content: 'FLOWCHART'; position: absolute; right: 32px; bottom: 8px;
+  font-family: 'Syne', sans-serif; font-size: 72px; font-weight: 800;
+  color: white; opacity: 0.04; letter-spacing: -2px; pointer-events: none;
+}
+.badge {
+  display: inline-block; background: var(--accent); color: white;
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; padding: 4px 12px; border-radius: 2px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+header h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px,5vw,48px); font-weight: 800; line-height: 1.1; max-width: 560px; }
+header p { margin-top: 12px; color: #a8a09a; font-weight: 300; max-width: 480px; }
+.nav-pills {
+  display: flex; gap: 8px; padding: 20px 40px;
+  border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  background: var(--paper); position: sticky; top: 0; z-index: 100;
+}
+.pill {
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px; padding: 7px 18px; border-radius: 100px;
+  border: 1.5px solid var(--border); cursor: pointer; transition: all 0.2s;
+  background: transparent; color: var(--muted);
+}
+.pill:hover, .pill.active { background: var(--ink); color: white; border-color: var(--ink); }
+main { max-width: 900px; margin: 0 auto; padding: 48px 40px; }
+.section { display: none; }
+.section.active { display: block; }
+.section-label {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.section-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+.def-block {
+  border-left: 4px solid var(--accent); padding: 20px 24px;
+  background: var(--soft); border-radius: 0 10px 10px 0; margin-bottom: 32px;
+}
+.def-block strong { font-family: 'Syne', sans-serif; font-weight: 700; display: block; margin-bottom: 6px; font-size: 16px; }
+.intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; margin-bottom: 40px; }
+.intro-card { background: var(--soft); border: 1.5px solid var(--border); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
+.intro-card .num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: var(--ink); opacity: 0.06; position: absolute; right: 16px; top: 8px; line-height: 1; }
+.intro-card h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.intro-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.intro-card .icon { font-size: 22px; margin-bottom: 12px; }
+.tips-box { background: var(--ink); color: white; border-radius: 14px; padding: 32px; margin-bottom: 32px; }
+.tips-box h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--accent); }
+.tip-row { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+.tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.tip-text { font-size: 14px; line-height: 1.6; color: #d4cfc9; }
+.tip-text strong { color: white; }
+.yt-wrap {
+  background: #cc0000; border-radius: 14px; padding: 28px 32px;
+  margin-bottom: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.yt-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+.yt-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: white; }
+.yt-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; color: #cc0000; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 14px; padding: 11px 24px;
+  border-radius: 100px; text-decoration: none; margin-top: 4px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.yt-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.game-wrap {
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  border-radius: 14px; padding: 28px 32px; margin-bottom: 40px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.game-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+.game-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: white; }
+.game-desc { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.game-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; color: #1e3a5f; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 14px; padding: 11px 24px;
+  border-radius: 100px; text-decoration: none; margin-top: 4px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.game-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.symbol-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; font-size: 14px; }
+.symbol-table th { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 10px 16px; border-bottom: 2px solid var(--ink); }
+.symbol-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.symbol-table tr:hover td { background: var(--soft); }
+.shape-cell { font-size: 22px; text-align: center; width: 48px; }
+.shape-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; display: block; }
+.tag { display: inline-block; background: var(--ink); color: white; font-size: 10px; font-family: 'Syne', sans-serif; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.5px; margin-top: 4px; }
+.tag.green { background: var(--green); }
+.tag.blue { background: var(--accent2); }
+.accordion { margin-bottom: 40px; }
+.acc-item { border: 1.5px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; transition: border-color 0.2s; }
+.acc-item.open { border-color: var(--ink); }
+.acc-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; user-select: none; }
+.acc-num { width: 28px; height: 28px; background: var(--ink); color: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.acc-item.open .acc-num { background: var(--accent); }
+.acc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; flex: 1; }
+.acc-arrow { font-size: 18px; color: var(--muted); transition: transform 0.25s; }
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 0 20px 20px 62px; font-size: 14px; color: #3a3530; line-height: 1.75; }
+.acc-item.open .acc-body { display: block; }
+.acc-body ul { padding-left: 18px; margin-top: 8px; }
+.acc-body li { margin-bottom: 5px; }
+.acc-body .highlight { background: #fef3c7; border-radius: 4px; padding: 2px 6px; font-weight: 500; }
+footer { text-align: center; padding: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+@media (max-width: 600px) {
+  header, .nav-pills, main { padding-left: 20px; padding-right: 20px; }
+  .pill { font-size: 11px; padding: 6px 12px; }
+}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="badge">ZEP Quiz · Area Materi</div>
-  <h1>Panduan Memulai Quiz Flowchart</h1>
-  <p>Pelajari konsep dan simbol flowchart sebelum mengerjakan quiz.</p>
+<div class="badge">ZEP Quiz · Area Materi</div>
+<h1>Panduan Memulai Quiz Flowchart</h1>
+<p>Pelajari konsep dan simbol flowchart sebelum mengerjakan quiz.</p>
 </header>
 
 <nav class="nav-pills">
-  <button class="pill active" onclick="showSection('intro', this)">Pengenalan</button>
-  <button class="pill" onclick="showSection('simbol', this)">Simbol</button>
-  <button class="pill" onclick="showSection('konsep', this)">Konsep Penting</button>
+<button class="pill active" onclick="showSection('intro', this)">Pengenalan</button>
+<button class="pill" onclick="showSection('simbol', this)">Simbol</button>
+<button class="pill" onclick="showSection('konsep', this)">Konsep Penting</button>
 </nav>
 
 <main>
+<!-- PENGENALAN -->
+<div class="section active" id="intro">
+<div class="section-label">Mulai dari sini</div>
+<h2 class="section-title">Apa itu Flowchart?</h2>
 
-  <!-- PENGENALAN -->
-  <div class="section active" id="intro">
-    <div class="section-label">Mulai dari sini</div>
-    <h2 class="section-title">Apa itu Flowchart?</h2>
+<div class="def-block">
+<strong>Definisi Flowchart</strong>
+Flowchart adalah <em>diagram alir</em> yang menggambarkan langkah-langkah dalam sebuah proses secara visual menggunakan simbol-simbol standar yang dihubungkan dengan panah.
+</div>
 
-    <div class="def-block">
-      <strong>Definisi Flowchart</strong>
-      Flowchart adalah <em>diagram alir</em> yang menggambarkan langkah-langkah dalam sebuah proses secara visual menggunakan simbol-simbol standar yang dihubungkan dengan panah.
-    </div>
+<div class="intro-grid">
+<div class="intro-card">
+<div class="icon">📋</div>
+<div class="num">1</div>
+<h3>Tujuan Utama</h3>
+<p>Memudahkan pemahaman proses yang kompleks agar mudah dipahami oleh siapapun.</p>
+</div>
+<div class="intro-card">
+<div class="icon">🔧</div>
+<div class="num">2</div>
+<h3>Keuntungan</h3>
+<p>Membantu dalam dokumentasi dan pemahaman proses dalam pengembangan perangkat lunak.</p>
+</div>
+<div class="intro-card">
+<div class="icon">🐛</div>
+<div class="num">3</div>
+<h3>Debugging</h3>
+<p>Membantu dalam debugging program dengan memvisualisasikan alur logika secara jelas.</p>
+</div>
+<div class="intro-card">
+<div class="icon">🔁</div>
+<div class="num">4</div>
+<h3>Loop / Pengulangan</h3>
+<p>Flowchart <em>dapat</em> digunakan untuk memodelkan loop atau pengulangan dalam program.</p>
+</div>
+</div>
 
-    <div class="intro-grid">
-      <div class="intro-card">
-        <div class="icon">📋</div>
-        <div class="num">1</div>
-        <h3>Tujuan Utama</h3>
-        <p>Memudahkan pemahaman proses yang kompleks agar mudah dipahami oleh siapapun.</p>
-      </div>
-      <div class="intro-card">
-        <div class="icon">🔧</div>
-        <div class="num">2</div>
-        <h3>Keuntungan</h3>
-        <p>Membantu dalam dokumentasi dan pemahaman proses dalam pengembangan perangkat lunak.</p>
-      </div>
-      <div class="intro-card">
-        <div class="icon">🐛</div>
-        <div class="num">3</div>
-        <h3>Debugging</h3>
-        <p>Membantu dalam debugging program dengan memvisualisasikan alur logika secara jelas.</p>
-      </div>
-      <div class="intro-card">
-        <div class="icon">🔁</div>
-        <div class="num">4</div>
-        <h3>Loop / Pengulangan</h3>
-        <p>Flowchart <em>dapat</em> digunakan untuk memodelkan loop atau pengulangan dalam program.</p>
-      </div>
-    </div>
+<div class="tips-box">
+<h3>💡 Tips Sebelum Memulai Quiz</h3>
+<div class="tip-row">
+<span class="tip-icon">🎯</span>
+<div class="tip-text"><strong>Hafal 5 simbol utama:</strong> Oval (mulai/akhir), Persegi panjang (proses), Romboid (input/output), Diamond (keputusan), Lingkaran (konektor).</div>
+</div>
+<div class="tip-row">
+<span class="tip-icon">➡️</span>
+<div class="tip-text"><strong>Arah aliran:</strong> Ditunjukkan dengan <strong>panah</strong> — bukan warna, bukan garis putus-putus.</div>
+</div>
+<div class="tip-row">
+<span class="tip-icon">🔶</span>
+<div class="tip-text"><strong>Diamond (wajik):</strong> Memiliki <strong>lebih dari satu</strong> jalur keluar (Ya/Tidak) — bukan satu.</div>
+</div>
+<div class="tip-row">
+<span class="tip-icon">📌</span>
+<div class="tip-text"><strong>Flowchart yang baik</strong> harus memiliki titik awal dan akhir yang jelas, serta urutan langkah yang logis.</div>
+</div>
+</div>
 
-    <div class="tips-box">
-      <h3>💡 Tips Sebelum Memulai Quiz</h3>
-      <div class="tip-row">
-        <span class="tip-icon">🎯</span>
-        <div class="tip-text"><strong>Hafal 5 simbol utama:</strong> Oval (mulai/akhir), Persegi panjang (proses), Romboid (input/output), Diamond (keputusan), Lingkaran (konektor).</div>
-      </div>
-      <div class="tip-row">
-        <span class="tip-icon">➡️</span>
-        <div class="tip-text"><strong>Arah aliran:</strong> Ditunjukkan dengan <strong>panah</strong> — bukan warna, bukan garis putus-putus.</div>
-      </div>
-      <div class="tip-row">
-        <span class="tip-icon">🔶</span>
-        <div class="tip-text"><strong>Diamond (wajik):</strong> Memiliki <strong>lebih dari satu</strong> jalur keluar (Ya/Tidak) — bukan satu.</div>
-      </div>
-      <div class="tip-row">
-        <span class="tip-icon">📌</span>
-        <div class="tip-text"><strong>Flowchart yang baik</strong> harus memiliki titik awal dan akhir yang jelas, serta urutan langkah yang logis.</div>
-      </div>
-    </div>
+<div class="yt-wrap">
+<div class="yt-label">🎬 Video Materi</div>
+<div class="yt-title">Tonton dulu sebelum mengerjakan quiz!</div>
+<a class="yt-btn" href="https://youtu.be/B1q2q3aDnRY?si=YW5Y9ND_G2aOUNQQ" target="_blank">
+▶ &nbsp;Buka Video di YouTube
+</a>
+</div>
 
-    <div class="yt-wrap">
-      <div class="yt-label">🎬 Video Materi</div>
-      <div class="yt-title">Tonton dulu sebelum mengerjakan quiz!</div>
-      <a class="yt-btn" href="https://youtu.be/W0on--AtYhM?si=zpnVz2toiyl3cryF" target="_blank">
-        ▶ &nbsp;Buka Video di YouTube
-      </a>
-    </div>
+<div class="game-wrap">
+<div class="game-label">🎮 Sudah siap?</div>
+<div class="game-title">Mulai Quiz Sekarang!</div>
+<p class="game-desc">Setelah membaca materi dan menonton video, klik tombol di bawah untuk mengerjakan quiz.</p>
+<a class="game-btn" href="https://quiz.zep.us/en/play/M0aXXM" target="_blank">
+Mulai Quiz ZEP &nbsp;→
+</a>
+</div>
+</div>
 
-    <div class="game-wrap">
-      <div class="game-label">🎮 Sudah siap?</div>
-      <div class="game-title">Mulai Quiz Sekarang!</div>
-      <p class="game-desc">Setelah membaca materi dan menonton video, klik tombol di bawah untuk mengerjakan quiz.</p>
-      <a class="game-btn" href="https://quiz.zep.us/en/play/0Ezl4Z" target="_blank">
-        Mulai Quiz ZEP &nbsp;→
-      </a>
-    </div>
-  </div>
+<!-- SIMBOL -->
+<div class="section" id="simbol">
+<div class="section-label">Referensi Visual</div>
+<h2 class="section-title">Simbol-Simbol Flowchart</h2>
 
-  <!-- SIMBOL -->
-  <div class="section" id="simbol">
-    <div class="section-label">Referensi Visual</div>
-    <h2 class="section-title">Simbol-Simbol Flowchart</h2>
+<table class="symbol-table">
+<thead>
+<tr>
+<th></th>
+<th>Nama Simbol</th>
+<th>Nama Inggris</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="shape-cell">⬭</td>
+<td><span class="shape-name">Oval / Terminal</span><span class="tag green">Kunci!</span></td>
+<td>Oval</td>
+<td>Menandai <strong>titik mulai atau akhir</strong> sebuah proses.</td>
+</tr>
+<tr>
+<td class="shape-cell">▭</td>
+<td><span class="shape-name">Persegi Panjang</span><span class="tag green">Kunci!</span></td>
+<td>Rectangle</td>
+<td>Mewakili <strong>proses atau operasi</strong> — contoh: perhitungan, penugasan nilai.</td>
+</tr>
+<tr>
+<td class="shape-cell">◇</td>
+<td><span class="shape-name">Diamond / Wajik</span><span class="tag green">Kunci!</span></td>
+<td>Diamond</td>
+<td>Menunjukkan <strong>keputusan atau percabangan</strong> (Ya/Tidak). Lebih dari satu jalur keluar.</td>
+</tr>
+<tr>
+<td class="shape-cell">▱</td>
+<td><span class="shape-name">Romboid</span><span class="tag green">Kunci!</span></td>
+<td>Parallelogram</td>
+<td>Mewakili <strong>input atau output</strong> data.</td>
+</tr>
+<tr>
+<td class="shape-cell">⬤</td>
+<td><span class="shape-name">Lingkaran</span><span class="tag blue">Perhatian!</span></td>
+<td>Circle</td>
+<td>Digunakan sebagai <strong>konektor/penghubung</strong>. <em>Bukan</em> untuk percabangan.</td>
+</tr>
+<tr>
+<td class="shape-cell">→</td>
+<td><span class="shape-name">Panah</span></td>
+<td>Arrow</td>
+<td>Menunjukkan <strong>arah aliran</strong> proses.</td>
+</tr>
+</tbody>
+</table>
 
-    <table class="symbol-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Nama Simbol</th>
-          <th>Nama Inggris</th>
-          <th>Fungsi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="shape-cell">⬭</td>
-          <td><span class="shape-name">Oval / Terminal</span><span class="tag green">Kunci!</span></td>
-          <td>Oval</td>
-          <td>Menandai <strong>titik mulai atau akhir</strong> sebuah proses.</td>
-        </tr>
-        <tr>
-          <td class="shape-cell">▭</td>
-          <td><span class="shape-name">Persegi Panjang</span><span class="tag green">Kunci!</span></td>
-          <td>Rectangle</td>
-          <td>Mewakili <strong>proses atau operasi</strong> — contoh: perhitungan, penugasan nilai.</td>
-        </tr>
-        <tr>
-          <td class="shape-cell">◇</td>
-          <td><span class="shape-name">Diamond / Wajik</span><span class="tag green">Kunci!</span></td>
-          <td>Diamond</td>
-          <td>Menunjukkan <strong>keputusan atau percabangan</strong> (Ya/Tidak). Lebih dari satu jalur keluar.</td>
-        </tr>
-        <tr>
-          <td class="shape-cell">▱</td>
-          <td><span class="shape-name">Romboid</span><span class="tag green">Kunci!</span></td>
-          <td>Parallelogram</td>
-          <td>Mewakili <strong>input atau output</strong> data.</td>
-        </tr>
-        <tr>
-          <td class="shape-cell">⬤</td>
-          <td><span class="shape-name">Lingkaran</span><span class="tag blue">Perhatian!</span></td>
-          <td>Circle</td>
-          <td>Digunakan sebagai <strong>konektor/penghubung</strong>. <em>Bukan</em> untuk percabangan.</td>
-        </tr>
-        <tr>
-          <td class="shape-cell">→</td>
-          <td><span class="shape-name">Panah</span></td>
-          <td>Arrow</td>
-          <td>Menunjukkan <strong>arah aliran</strong> proses.</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="def-block">
+<strong>⚠️ Yang Sering Tertukar di Quiz</strong>
+Simbol <em>Lingkaran</em> adalah konektor — <strong>bukan</strong> percabangan. Percabangan menggunakan <em>Diamond</em>. Input/output menggunakan <em>Romboid</em>, bukan oval.
+</div>
+</div>
 
-    <div class="def-block">
-      <strong>⚠️ Yang Sering Tertukar di Quiz</strong>
-      Simbol <em>Lingkaran</em> adalah konektor — <strong>bukan</strong> percabangan. Percabangan menggunakan <em>Diamond</em>. Input/output menggunakan <em>Romboid</em>, bukan oval.
-    </div>
-  </div>
+<!-- KONSEP PENTING -->
+<div class="section" id="konsep">
+<div class="section-label">Pemahaman Mendalam</div>
+<h2 class="section-title">Konsep Penting Flowchart</h2>
 
-  <!-- KONSEP PENTING -->
-  <div class="section" id="konsep">
-    <div class="section-label">Pemahaman Mendalam</div>
-    <h2 class="section-title">Konsep Penting Flowchart</h2>
+<div class="accordion">
+<div class="acc-item open">
+<div class="acc-header" onclick="toggleAcc(this)">
+<div class="acc-num">1</div>
+<span class="acc-title">Jenis-Jenis Flowchart</span>
+<span class="acc-arrow">▾</span>
+</div>
+<div class="acc-body">
+Ada dua jenis utama:
+<ul>
+<li><strong>Flowchart Sistem:</strong> menggambarkan <span class="highlight">sistem secara keseluruhan</span>.</li>
+<li><strong>Flowchart Program:</strong> menggambarkan <span class="highlight">detail logika program komputer</span>.</li>
+</ul>
+Flowchart sistem lebih luas; flowchart program lebih detail dan teknis.
+</div>
+</div>
 
-    <div class="accordion">
-      <div class="acc-item open">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-num">1</div>
-          <span class="acc-title">Jenis-Jenis Flowchart</span>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-body">
-          Ada dua jenis utama:
-          <ul>
-            <li><strong>Flowchart Sistem:</strong> menggambarkan <span class="highlight">sistem secara keseluruhan</span>.</li>
-            <li><strong>Flowchart Program:</strong> menggambarkan <span class="highlight">detail logika program komputer</span>.</li>
-          </ul>
-          Flowchart sistem lebih luas; flowchart program lebih detail dan teknis.
-        </div>
-      </div>
+<div class="acc-item">
+<div class="acc-header" onclick="toggleAcc(this)">
+<div class="acc-num">2</div>
+<span class="acc-title">Loop (Pengulangan) dalam Flowchart</span>
+<span class="acc-arrow">▾</span>
+</div>
+<div class="acc-body">
+Loop adalah <span class="highlight">pengulangan proses hingga kondisi tertentu terpenuhi</span>. Digambarkan dengan:
+<ul>
+<li>Simbol diamond yang arah "tidak"-nya kembali ke langkah sebelumnya</li>
+<li>Panah yang membentuk siklus (loop back)</li>
+</ul>
+<strong>Flowchart DAPAT memodelkan loop.</strong>
+</div>
+</div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-num">2</div>
-          <span class="acc-title">Loop (Pengulangan) dalam Flowchart</span>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-body">
-          Loop adalah <span class="highlight">pengulangan proses hingga kondisi tertentu terpenuhi</span>. Digambarkan dengan:
-          <ul>
-            <li>Simbol diamond yang arah "tidak"-nya kembali ke langkah sebelumnya</li>
-            <li>Panah yang membentuk siklus (loop back)</li>
-          </ul>
-          <strong>Flowchart DAPAT memodelkan loop.</strong>
-        </div>
-      </div>
+<div class="acc-item">
+<div class="acc-header" onclick="toggleAcc(this)">
+<div class="acc-num">3</div>
+<span class="acc-title">Percabangan Logika (Branching)</span>
+<span class="acc-arrow">▾</span>
+</div>
+<div class="acc-body">
+Flowchart <span class="highlight">dapat menggambarkan percabangan logika</span> menggunakan simbol Diamond:
+<ul>
+<li>Titik keputusan dengan dua jalur (Ya / Tidak)</li>
+<li>Setiap jalur menuju proses yang berbeda</li>
+</ul>
+Berguna untuk memahami alur kondisional seperti <em>if-else</em> dalam pemrograman.
+</div>
+</div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-num">3</div>
-          <span class="acc-title">Percabangan Logika (Branching)</span>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-body">
-          Flowchart <span class="highlight">dapat menggambarkan percabangan logika</span> menggunakan simbol Diamond:
-          <ul>
-            <li>Titik keputusan dengan dua jalur (Ya / Tidak)</li>
-            <li>Setiap jalur menuju proses yang berbeda</li>
-          </ul>
-          Berguna untuk memahami alur kondisional seperti <em>if-else</em> dalam pemrograman.
-        </div>
-      </div>
+<div class="acc-item">
+<div class="acc-header" onclick="toggleAcc(this)">
+<div class="acc-num">4</div>
+<span class="acc-title">Syarat Flowchart yang Baik</span>
+<span class="acc-arrow">▾</span>
+</div>
+<div class="acc-body">
+<ul>
+<li>✅ Memiliki <strong>titik awal dan akhir yang jelas</strong></li>
+<li>✅ Langkah-langkah disusun dalam <strong>urutan yang logis</strong></li>
+<li>✅ Menggunakan simbol yang <strong>standar dan konsisten</strong></li>
+<li>✅ Arah aliran ditunjukkan dengan <strong>panah</strong></li>
+</ul>
+</div>
+</div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-num">4</div>
-          <span class="acc-title">Syarat Flowchart yang Baik</span>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-body">
-          <ul>
-            <li>✅ Memiliki <strong>titik awal dan akhir yang jelas</strong></li>
-            <li>✅ Langkah-langkah disusun dalam <strong>urutan yang logis</strong></li>
-            <li>✅ Menggunakan simbol yang <strong>standar dan konsisten</strong></li>
-            <li>✅ Arah aliran ditunjukkan dengan <strong>panah</strong></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-num">5</div>
-          <span class="acc-title">Kegunaan Flowchart dalam Software Development</span>
-          <span class="acc-arrow">▾</span>
-        </div>
-        <div class="acc-body">
-          <ul>
-            <li>📄 <strong>Dokumentasi</strong> dan pemahaman proses</li>
-            <li>🐛 Membantu <strong>debugging</strong> dengan memvisualisasikan alur logika</li>
-            <li>🗣️ Komunikasi antar anggota tim</li>
-          </ul>
-          <strong>Perhatian:</strong> Flowchart <em>tidak</em> digunakan untuk menguji efisiensi kode.
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="acc-item">
+<div class="acc-header" onclick="toggleAcc(this)">
+<div class="acc-num">5</div>
+<span class="acc-title">Kegunaan Flowchart dalam Software Development</span>
+<span class="acc-arrow">▾</span>
+</div>
+<div class="acc-body">
+<ul>
+<li>📄 <strong>Dokumentasi</strong> dan pemahaman proses</li>
+<li>🐛 Membantu <strong>debugging</strong> dengan memvisualisasikan alur logika</li>
+<li>🗣️ Komunikasi antar anggota tim</li>
+</ul>
+<strong>Perhatian:</strong> Flowchart <em>tidak</em> digunakan untuk menguji efisiensi kode.
+</div>
+</div>
+</div>
+</div>
 </main>
 
 <footer>
-  Materi dibuat dari ZEP Quiz · Flowchart · Kode masuk: 240308
+Materi dibuat dari ZEP Quiz · Flowchart · Kode masuk: 240308
 </footer>
 
 <script>
-  function showSection(id, btn) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function toggleAcc(header) {
-    header.parentElement.classList.toggle('open');
-  }
-</script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
+function toggleAcc(header) {
+  header.parentElement.classList.toggle('open');
+}
+</script>
 </body>
 </html>
